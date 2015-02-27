@@ -1,13 +1,16 @@
-import java.util.Arrays;
 import java.util.Map;
 
 /**
- * Created by Stefan & andrei on 26.02.2015.
+ * @author Stefan&Andrei
  */
 public class Matrix {
     private final int n, m;
     private VectorMap[] rows = new VectorMap[100];
 
+    /**
+     * @param n nr de linii
+     * @param m nr de coloane
+     */
     public Matrix(int n, int m) {
         this.n = n;
         this.m = m;
@@ -16,6 +19,47 @@ public class Matrix {
         }
     }
 
+    /**
+     * @param n nr linii
+     * @param m nr coloane
+     * @param matrice elementele matricii intr-un tablou bidimensional
+     */
+    public Matrix(int n, int m, double[][] matrice){
+        this.n=n;
+        this.m=m;
+        for (int index=0; index<n; index++){
+            rows[index] = new VectorMap(m);
+            for (int col=0; col<m; col++){
+                if (matrice[index][col] !=0) {
+                    rows[index].put(col, matrice[index][col]);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param n nr linii
+     * @param m nr coloane
+     * @param matrice elementele matricii intr-un tablou unidimensional
+     */
+    public Matrix(int n, int m, double[] matrice){
+        this.n=n;
+        this.m=m;
+        for (int index=0; index<n; index++){
+            rows[index] = new VectorMap(m);
+            for (int col=0; col<m; col++){
+                if (matrice[index*col+col] !=0) {
+                    rows[index].put(col, matrice[index*col+col]);
+                }
+            }
+        }
+    }
+
+    /**
+     * @param row rand
+     * @param col coloana
+     * @param value valoare
+     */
     public void put(int row, int col, double value){
         if (row < 0 || row >= n) {
             throw new RuntimeException("Index randuri gresit!");
@@ -26,6 +70,11 @@ public class Matrix {
         rows[row].put(col,value);
     }
 
+    /**
+     * @param row rand
+     * @param col coloana
+     * @return m[row][col]
+     */
     public double get(int row, int col){
         if (row < 0 || row >= n) {
             throw new RuntimeException("Index randuri gresit!");
@@ -36,6 +85,9 @@ public class Matrix {
         return rows[row].get(col);
     }
 
+    /**
+     * @return numarul de elemente non-zero
+     */
     public int numberOfNonZeroEntries(){
         int count=0;
         for (int i=0; i < n; i++){
@@ -44,6 +96,10 @@ public class Matrix {
         return count;
     }
 
+    /**
+     * @param x matricea deinmultit
+     * @return produsul dintre doua matrici
+     */
     public Matrix product(Matrix x){
         if (this.getM() != x.getN()) {
             throw new RuntimeException("Inmultimrea matricelor nu poate fi realizata!");
@@ -63,6 +119,10 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * @param number scalarul
+     * @return produsul dintre o matrice si un scalar
+     */
     public Matrix product (double number){
         Matrix b = new Matrix(this.getN(),this.getM());
         for (int i=0; i<b.getN(); i++){
@@ -71,6 +131,10 @@ public class Matrix {
         return b;
     }
 
+    /**
+     * @param b matricea de adunat
+     * @return suma dintre 2 matrici
+     */
     public Matrix sum(Matrix b){
         if ((this.getN() != b.getN()) || (this.getM() != b.getM())){
             throw new RuntimeException("Matrici de dimensiuni diferite!");
@@ -82,6 +146,9 @@ public class Matrix {
         return result;
     }
 
+    /**
+     * @return transpusa unei matrici
+     */
     public Matrix transpose(){
         Matrix transposedMatrix= new Matrix(this.getM(),this.getN());
         for (int i=0; i<this.getN(); i++){
@@ -92,14 +159,23 @@ public class Matrix {
         return transposedMatrix;
     }
 
+    /**
+     * @return vectorul de randuri
+     */
     public VectorMap[] getRows() {
         return rows;
     }
 
+    /**
+     * @return nr de randuri
+     */
     public int getN() {
         return n;
     }
 
+    /**
+     * @return nr de coloane
+     */
     public int getM() {
         return m;
     }

@@ -1,9 +1,6 @@
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Created by Stefan on 26.02.2015.
- */
 public class VectorMap {
     private final int n; // lungimea vectorului
     private TreeMap<Integer, Double> vectorMap;
@@ -104,18 +101,4 @@ public class VectorMap {
     public TreeMap<Integer, Double> getVectorMap() {
         return this.vectorMap;
     }
-//    public static void main(String[] args) {
-//        VectorMap a = new VectorMap(10);
-//        VectorMap b = new VectorMap(10);
-//        a.put(3, 0.50);
-//        a.put(4, 0.75);
-//        a.put(6, 0.11);
-//        a.put(6, 0.00);
-//        b.put(3, 0.60);
-//        b.put(4, 0.90);
-//        System.out.println("a = " + a);
-//        System.out.println("b = " + b);
-//        System.out.println("a x b = " + a.product(b));
-//        System.out.println("a + b   = " + a.sum(b));
-//    }
 }
