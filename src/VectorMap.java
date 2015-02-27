@@ -26,12 +26,7 @@ public class VectorMap {
         if (index<0 || index>=n) {
             throw new RuntimeException("Index gresit!");
         }
-        if (vectorMap.containsKey(index)){
-            return vectorMap.get(index);
-        }
-        else {
-            return 0.0;
-        }
+        return vectorMap.containsKey(index) ? vectorMap.get(index) : 0.0;
     }
 
     public int numberOfNonZeroEntries(){
@@ -69,7 +64,7 @@ public class VectorMap {
         VectorMap a = this;
         VectorMap b = new VectorMap(n);
         for (Map.Entry<Integer, Double> entry : a.vectorMap.entrySet()){
-            b.put(entry.getKey(),entry.getValue()*number);
+            b.put(entry.getKey(), entry.getValue() * number);
         }
         return b;
     }
@@ -81,10 +76,10 @@ public class VectorMap {
             throw new RuntimeException("Lungimea vectorilor difera!");
         }
         for (Map.Entry<Integer, Double> entry : a.vectorMap.entrySet()){
-            c.put(entry.getKey(),entry.getValue());
+            c.put(entry.getKey(), entry.getValue());
         }
         for (Map.Entry<Integer, Double> entry : b.vectorMap.entrySet()){
-            c.put(entry.getKey(),entry.getValue()+c.get(entry.getKey()));
+            c.put(entry.getKey(), entry.getValue() + c.get(entry.getKey()));
         }
         return c;
     }

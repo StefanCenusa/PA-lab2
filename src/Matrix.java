@@ -49,7 +49,7 @@ public class Matrix {
             rows[index] = new VectorMap(m);
             for (int col=0; col<m; col++){
                 if (matrice[index*col+col] !=0) {
-                    rows[index].put(col, matrice[index*col+col]);
+                    rows[index].put(col, matrice[index * col + col]);
                 }
             }
         }
@@ -67,7 +67,7 @@ public class Matrix {
         if (col < 0 || col >= m) {
             throw new RuntimeException("Index coloane gresit!");
         }
-        rows[row].put(col,value);
+        rows[row].put(col, value);
     }
 
     /**
