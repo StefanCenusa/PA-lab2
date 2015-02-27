@@ -53,7 +53,7 @@ public class Matrix {
         Matrix xTransposed = x.transpose();
 
         for (int i=0; i<this.getN(); i++){
-            for (int j=0; j<x.getM();) {
+            for (int j=0; j<xTransposed.getN();j++) {
                 double sum = this.getRows()[i].product(xTransposed.getRows()[j]);
                 if (sum != 0) {
                     result.put(i, j, sum);
@@ -114,22 +114,25 @@ public class Matrix {
     }
 
     public static void main(String[] args) {
-        Matrix A = new Matrix(3,2);
+        Matrix A = new Matrix(2,3);
         A.put(0, 0, 1.0);
-        A.put(0, 1, 3.0);
-        A.put(1, 0, 5.0);
-        A.put(1, 1, 6.0);
-        A.put(2, 0, 8.0);
-        A.put(2, 1, 7.0);
+        A.put(0, 1, 2.0);
+        A.put(0, 2, 3.0);
+        A.put(1, 0, 4.0);
+        A.put(1, 1, 5.0);
+        A.put(1, 2, 6.0);
 
-        Matrix B = new Matrix(2,4);
-        B.put(0,0,2);
-        B.put(0,1,3);
-        B.put(0,2,4);
-        B.put(1,1,4);
+        Matrix B = new Matrix(3,2);
+        B.put(0,0,7);
+        B.put(0,1,8);
+        B.put(1,0,9);
+        B.put(1,1,10);
+        B.put(2,0,11);
+        B.put(2,1,12);
 
-        System.out.println("A     : " + A);
-        System.out.println("AB    : " + A.product(B));
-        System.out.println("A + B : " + A.sum(B));
+        System.out.println("A:\n" + A);
+        System.out.println("At:\n" + A.transpose());
+        System.out.println("A + A:\n: " + A.sum(A));
+        System.out.println("AxB:\n" + A.product(B));
     }
 }
