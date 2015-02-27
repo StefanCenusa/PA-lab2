@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 /**
- * Created by Stefan on 26.02.2015.
+ * Created by Stefan & andrei on 26.02.2015.
  */
 public class Matrix {
     private final int n, m;
